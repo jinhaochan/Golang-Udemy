@@ -23,6 +23,8 @@ func main() {
 
 	card3 := newCard()
 
+	var myslice slice = [1,2,3]
+
 	fmt.Println(card, ",", card2, ",", card3)
 }
 
