@@ -21,5 +21,12 @@ func main() {
 
 	card2 = "Queen of Hearts"
 
-	fmt.Println(card, " ", card2)
+	card3 := newCard()
+
+	fmt.Println(card, ",", card2, ",", card3)
+}
+
+// return type of function declared after the function name
+func newCard() string {
+	return "Five of Diamonds"
 }
