@@ -6,8 +6,11 @@ func main() {
 	// append does not modify the actual slice, but returns a new slice
 	cards = append(cards, "Six of Spades")
 
-	cards.print()
+	myNewDeck := newDeck()
 
+	myNewDeck.print()
+
+	cards.print()
 }
 
 func newCard() string {
