@@ -1,18 +1,12 @@
 package main
 
 func main() {
-	cards := deck{newCard(), "Ace of Diamonds"}
+	myDeck := newDeck()
 
-	// append does not modify the actual slice, but returns a new slice
-	cards = append(cards, "Six of Spades")
+	hand, remainingCards := deal(4, myDeck)
 
-	myNewDeck := newDeck()
+	remainingCards.print()
 
-	myNewDeck.print()
+	hand.print()
 
-	cards.print()
-}
-
-func newCard() string {
-	return "Five of Diamonds"
 }

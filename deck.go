@@ -36,6 +36,9 @@ func newDeck() (cards deck) {
 			cards = append(cards, value+" of "+suite)
 		}
 	}
-
 	return
+}
+
+func deal(num int, d deck) (deck, deck) {
+	return d[:num], d[num:]
 }
