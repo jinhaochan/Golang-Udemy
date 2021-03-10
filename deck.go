@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"os"
+	"strings"
+)
 
 // Create new type of deck
 // which is a slice of string
@@ -41,4 +46,39 @@ func newDeck() (cards deck) {
 
 func deal(num int, d deck) (deck, deck) {
 	return d[:num], d[num:]
+}
+
+// Converts a slice of strings, deck, into a single string
+func (d deck) toString() string {
+	return strings.Join(d, ",")
+}
+
+func (d deck) saveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
+}
+
+func newDeckFromFile(filename string) deck {
+
+	bs, err := ioutil.ReadFile(filename)
+
+	// if there indeed is an error, we can either log the error and return a new deck
+	// or log the error and quit the program
+
+	if err != nil {
+		fmt.Println("Error: ", err)
+		// passing zero into Exit means that no errors were encountered
+		// passing in a non-zero indicates that an error was encountered
+		os.Exit(-1)
+	}
+
+	// casting the binary to a string
+	s := string(bs)
+
+	// splitting the string on comma
+	d := strings.Split(s, ",")
+
+	dd := deck(d)
+
+	return dd
+
 }
