@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 // Create new type of deck
@@ -80,5 +82,18 @@ func newDeckFromFile(filename string) deck {
 	dd := deck(d)
 
 	return dd
+}
 
+// we dont have to return a new deck, because this works on the value that was passed in
+func (d deck) shuffle() {
+
+	// creating a new rng seeded with nano time
+	source := rand.NewSource(time.Now().UnixNano())
+
+	r := rand.New(source)
+
+	for i := range d {
+		newPos := r.Intn(len(d) - 1)
+		d[i], d[newPos] = d[newPos], d[i]
+	}
 }
