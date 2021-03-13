@@ -29,8 +29,8 @@ func (d deck) print() {
 
 // do not need to add a receiver. this is a case by case basis
 // experimenting with empty returns
-func newDeck() (cards deck) {
-	//cards := deck{}
+func newDeck() deck {
+	cards := deck{}
 
 	cardSuites := []string{"Clubs", "Spades", "Hearts", "Diamonds"}
 
@@ -43,7 +43,7 @@ func newDeck() (cards deck) {
 			cards = append(cards, value+" of "+suite)
 		}
 	}
-	return
+	return cards
 }
 
 func deal(num int, d deck) (deck, deck) {
